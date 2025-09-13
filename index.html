@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who Wants To Be A Millionaire</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Home Screen -->
+        <div id="home-screen" class="screen active">
+            <div class="hero-background">
+                <div class="hero-overlay"></div>
+                <div class="hero-content">
+                    <h1 class="game-title">Who Wants To Be A <span class="gradient-text">Millionaire</span>?</h1>
+                    <p class="subtitle">Pick one or more categories and begin your journey to $1,000,000.</p>
+                    
+                    <div id="category-selection" class="category-grid">
+                        <!-- Categories will be populated by JavaScript -->
+                    </div>
+                    
+                    <div class="start-section">
+                        <button id="start-game" class="start-btn" disabled>Start Game</button>
+                    </div>
+                    
+                    <div id="loading-overlay" class="loading-overlay hidden">
+                        <div class="loading-content">
+                            <div class="spinner"></div>
+                            <p class="loading-text">Generating questions...</p>
+                        </div>
+                    </div>
+                    
+                    <div id="error-modal" class="error-modal hidden">
+                        <div class="error-content">
+                            <h3>Unable to start</h3>
+                            <p id="error-message"></p>
+                            <button id="close-error" class="close-btn">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <div class="game-layout">
+                <!-- Left Panel: Money Ladder -->
+                <div class="money-ladder">
+                    <h3>Money Ladder</h3>
+                    <div id="ladder-list" class="ladder-list">
+                        <!-- Money ladder will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Main Game Area -->
+                <div class="game-main">
+                    <!-- Timer and Level -->
+                    <div class="game-header">
+                        <div class="level-info">
+                            <span id="current-level">Level 1</span>
+                            <span id="current-prize">$100</span>
+                        </div>
+                        <div class="timer">
+                            <div id="timer-bar" class="timer-bar"></div>
+                            <span id="timer-text">30</span>
+                        </div>
+                    </div>
+
+                    <!-- Question Area -->
+                    <div class="question-area">
+                        <div id="question-text" class="question-text">
+                            <!-- Question will be displayed here -->
+                        </div>
+                        
+                        <div id="choices-container" class="choices-container">
+                            <button class="choice" data-index="0">
+                                <span class="choice-letter">A:</span>
+                                <span class="choice-text"></span>
+                            </button>
+                            <button class="choice" data-index="1">
+                                <span class="choice-letter">B:</span>
+                                <span class="choice-text"></span>
+                            </button>
+                            <button class="choice" data-index="2">
+                                <span class="choice-letter">C:</span>
+                                <span class="choice-text"></span>
+                            </button>
+                            <button class="choice" data-index="3">
+                                <span class="choice-letter">D:</span>
+                                <span class="choice-text"></span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Game Controls -->
+                    <div class="game-controls">
+                        <button id="lock-in" class="action-btn lock-btn" disabled>Lock In</button>
+                        <button id="walk-away" class="action-btn walk-btn">Walk Away</button>
+                    </div>
+                </div>
+
+                <!-- Right Panel: Lifelines -->
+                <div class="lifelines">
+                    <h3>Lifelines</h3>
+                    <button id="fifty-fifty" class="lifeline-btn" title="50:50">
+                        <span class="lifeline-icon">📊</span>
+                        <span class="lifeline-text">50:50</span>
+                    </button>
+                    <button id="audience-poll" class="lifeline-btn" title="Ask the Audience">
+                        <span class="lifeline-icon">👥</span>
+                        <span class="lifeline-text">Audience</span>
+                    </button>
+                    <button id="switch-question" class="lifeline-btn" title="Switch Question">
+                        <span class="lifeline-icon">🔄</span>
+                        <span class="lifeline-text">Switch</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Audience Poll Results -->
+            <div id="poll-results" class="poll-results hidden">
+                <h3>Audience Says:</h3>
+                <div class="poll-bars">
+                    <div class="poll-bar">
+                        <span class="poll-letter">A</span>
+                        <div class="poll-bar-fill" data-choice="0"></div>
+                        <span class="poll-percentage" data-choice="0">0%</span>
+                    </div>
+                    <div class="poll-bar">
+                        <span class="poll-letter">B</span>
+                        <div class="poll-bar-fill" data-choice="1"></div>
+                        <span class="poll-percentage" data-choice="1">0%</span>
+                    </div>
+                    <div class="poll-bar">
+                        <span class="poll-letter">C</span>
+                        <div class="poll-bar-fill" data-choice="2"></div>
+                        <span class="poll-percentage" data-choice="2">0%</span>
+                    </div>
+                    <div class="poll-bar">
+                        <span class="poll-letter">D</span>
+                        <div class="poll-bar-fill" data-choice="3"></div>
+                        <span class="poll-percentage" data-choice="3">0%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="screen">
+            <div class="results-content">
+                <h1 id="results-title"></h1>
+                <div id="final-score" class="final-score"></div>
+                <div class="results-actions">
+                    <button id="play-again" class="action-btn">Play Again</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="game.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
